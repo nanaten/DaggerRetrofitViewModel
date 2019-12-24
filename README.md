@@ -1,2 +1,2 @@
 # DaggerRetrofitViewModel
-DI Minimum Configration of Dagger2, Retrofit, ViewModel
+DI's Minimum configuration of Dagger, Retrofit, and ViewModel
