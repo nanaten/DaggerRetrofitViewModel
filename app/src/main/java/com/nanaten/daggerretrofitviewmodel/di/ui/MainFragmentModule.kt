@@ -1,6 +1,7 @@
 package com.nanaten.daggerretrofitviewmodel.di.ui
 
 import androidx.lifecycle.ViewModel
+import com.nanaten.daggerretrofitviewmodel.di.FragmentScope
 import com.nanaten.daggerretrofitviewmodel.di.domain.MainModule
 import com.nanaten.daggerretrofitviewmodel.di.viewmodel.ViewModelKey
 import com.nanaten.daggerretrofitviewmodel.ui.MainFragment
@@ -17,9 +18,11 @@ internal abstract class MainFragmentModule {
     @Binds
     @IntoMap
     @ViewModelKey(MainViewModel::class)
+    @FragmentScope
     internal abstract fun bindMainViewModel(viewModel: MainViewModel): ViewModel
 
     @ContributesAndroidInjector
+    @FragmentScope
     abstract fun provideMainFragment(): MainFragment
 
 }
