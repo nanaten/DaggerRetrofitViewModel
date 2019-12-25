@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
@@ -20,14 +21,13 @@ class MainFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    lateinit var viewModel: MainViewModel
+    private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
