@@ -42,8 +42,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    final DAGGER_VERSION = '2.24'
-    final RETROFIT_VERSION = '2.5.0'
+    final DAGGER_VERSION = '2.25.3'
+    final RETROFIT_VERSION = '2.7.0'
 
     // retrofit
     implementation "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT_VERSION"
