@@ -20,7 +20,7 @@ import javax.inject.Inject
 class MainFragment : DaggerFragment() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelFactory<MainViewModel>
     private val viewModel: MainViewModel by viewModels { viewModelFactory }
 
     override fun onCreateView(
