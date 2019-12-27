@@ -1,5 +1,6 @@
 package com.nanaten.daggerretrofitviewmodel.di.app
 
+import android.content.Context
 import com.nanaten.daggerretrofitviewmodel.App
 import com.nanaten.daggerretrofitviewmodel.di.domain.MainModule
 import com.nanaten.daggerretrofitviewmodel.di.ui.MainActivityBuilder
@@ -22,16 +23,11 @@ import javax.inject.Singleton
 )
 
 interface AppComponent : AndroidInjector<App> {
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: App): Builder
-
-        fun api(apiModule: ApiModule): Builder
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance app: App,
+                   @BindsInstance apiModule: ApiModule): AppComponent
     }
-
-    override fun inject(application: App)
 
 }
 
