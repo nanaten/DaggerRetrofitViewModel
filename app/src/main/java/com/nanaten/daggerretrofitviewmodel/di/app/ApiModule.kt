@@ -1,15 +1,15 @@
 package com.nanaten.daggerretrofitviewmodel.di.app
 
-import com.google.gson.FieldNamingPolicy
-import com.google.gson.GsonBuilder
 import com.nanaten.daggerretrofitviewmodel.network.Api
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -19,9 +19,6 @@ class ApiModule {
         const val API_READ_TIMEOUT: Long = 10
         const val API_CONNECT_TIMEOUT: Long = 10
     }
-
-    private val gson =
-        GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
 
     @Provides
     @Singleton
@@ -45,10 +42,13 @@ class ApiModule {
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+        val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("https://api.github.com/")
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
