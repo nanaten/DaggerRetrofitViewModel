@@ -12,7 +12,7 @@ import javax.inject.Inject
 class App : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return DaggerAppComponent.factory()
-            .create(this, ApiModule())
+            .create(this)
     }
 }
 
